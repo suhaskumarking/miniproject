@@ -20,8 +20,7 @@ app.use(checkForAuthentication('user'));
 
 
 app.get("/", (req, res) => {
-  console.log('This is home Route!');
-  res.send("This is home route!");
+  res.render('index');
 });
 
 app.use('/user',userRouter);

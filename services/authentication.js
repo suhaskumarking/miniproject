@@ -1,8 +1,9 @@
 import jwt from "jsonwebtoken";
 
-const secret = process.env.JWT_SECRET;
 
 export function createTokenForUser(user) {
+    const secret = process.env.JWT_SECRET;
+    console.log("The secret key is",secret)
     const payload = {
         _id: user._id,
         email: user.email
