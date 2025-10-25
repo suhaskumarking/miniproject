@@ -14,7 +14,7 @@ router.post('/login',async (req,res) => {
         const {email,password} = req.body;
         const user = await User.findOne({email});
         let hashedPass = user.password;
-        const result = await bcrypt.compare(password,hashedPass);
+        const result = bcrypt.compare(password,hashedPass);
         console.log(result);
         if(!result) {
             return res.send("Invalid Email or Password");
