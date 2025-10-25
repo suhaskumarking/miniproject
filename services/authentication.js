@@ -15,6 +15,7 @@ export function createTokenForUser(user) {
 
 
 export function validateToken(token) {
+    const secret = process.env.JWT_SECRET;
     if(!token) {
         throw new Error('Invalid user');
     }
