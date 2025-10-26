@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Learning Assistant | Programming Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -13,193 +15,256 @@
     }
 
     body {
-      padding: 20px;
-      font-family: 'Arial', sans-serif;
-      color: #000000;
-      display: flex;
-      flex-direction: column;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
-      background-color: #f5f7fa;
+      color: #2d3748;
+      line-height: 1.6;
     }
 
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
     header {
-      margin-bottom: 30px;
-      border-radius: 10px;
-      align-items: center;
-      background-color: #7b38f7;
-      color: #fff;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    header a {
-      font-size: 26px;
-      font-weight: 600;
-      color: #fff;
-      text-decoration: none;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     nav {
       display: flex;
-      gap: 20px;
-      color: #fff;
-      text-align: center;
-    }
-
-    nav a {
-      font-size: 18px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .content {
-      display: flex;
       justify-content: space-between;
-      flex: 1;
-      margin: auto;
-      padding: 20px 0;
-      gap: 20px;
+      align-items: center;
+      padding: 1.25rem 0;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #4a5568;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
       position: relative;
     }
 
-    .main-content {
-      cursor: pointer;
-      flex: 1;
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #667eea;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 4rem 0 3rem;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Main Content */
+    main {
+      padding-bottom: 4rem;
+    }
+
+    .course-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      background-color: #fff;
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
-        rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
     }
 
-    aside {
-      border: 1px solid #ccc;
-      padding: 20px;
-      width: 350px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      position: -webkit-sticky;
-      position: sticky;
-      top: 20px;
-      color: #333;
-      right: 0;
-      margin-left: 20px;
+    .course-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
-    .related-news h3 {
-      text-align: center;
-      border-radius: 7px;
-      padding: 8px;
-      background: #000;
-      color: #ffffff;
-      font-size: 1.4em;
-      margin-bottom: 15px;
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
     }
 
-    .related-news ul {
-      list-style: none;
-      padding: 7px;
-      margin: 0;
+    .course-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
 
-    .related-news li {
-      margin-bottom: 12px;
+    .course-card:hover::before {
+      transform: scaleX(1);
     }
 
-    .related-news a {
-      text-decoration: none;
-      color: #7b38f7;
-      font-weight: bold;
-      transition: color 0.3s ease;
+    .course-image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
     }
 
-    .related-news a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      border-radius: 10px;
-      background-color: #7b38f7;
-      color: #fff;
-      padding: 20px;
-      font-weight: 500;
-      text-align: center;
-      margin-top: auto;
-      font-size: 18px;
-    }
-
-    article {
-      transition: all 0.3s ease;
-      background-color: #fff;
-      padding: 15px;
-      box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
-        rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-      border-radius: 7px;
-      color: #000000;
-    }
-
-    article:hover {
-      background-color: #e7ddfb;
-    }
-
-    figure {
-      background-color: #fafafa;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      text-align: center;
-      margin: 0;
-    }
-
-    figcaption {
-      font-size: 0.9em;
-      color: #666;
-    }
-
-    img {
+    .course-image img {
       max-width: 100%;
-      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.2));
+      transition: transform 0.3s ease;
+    }
+
+    .course-card:hover .course-image img {
+      transform: scale(1.1);
+    }
+
+    .course-content {
+      padding: 1.5rem;
+    }
+
+    .course-content h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #2d3748;
+    }
+
+    .course-content p {
+      color: #718096;
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    .course-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .course-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: #f7fafc;
       border-radius: 8px;
+      text-decoration: none;
+      color: #4a5568;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
 
-    article h2 {
-      color: #7b38f7;
-      font-size: 1.3em;
-      margin-bottom: 12px;
+    .course-link:hover {
+      background: #edf2f7;
+      border-color: #667eea;
+      transform: translateX(5px);
     }
 
-    article p {
-      text-align: left;
-      line-height: 1.5;
-      margin-top: 10px;
+    .course-link::before {
+      content: '→';
+      font-size: 1.25rem;
+      color: #667eea;
+      font-weight: bold;
     }
 
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .content {
-        flex-direction: column;
-        padding: 10px;
+      .hero h1 {
+        font-size: 2rem;
       }
 
-      aside {
-        width: 100%;
-        margin-top: 20px;
-        position: static;
-        margin-left: 0;
+      .hero p {
+        font-size: 1rem;
+        padding: 0 1rem;
       }
 
-      .main-content {
+      .course-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 2rem 0;
+      }
+
+      .hero h1 {
+        font-size: 1.75rem;
       }
     }
   </style>
@@ -207,91 +272,94 @@
 
 <body>
   <header>
-    <a href="#">🧠 AI Learning Assistant</a>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Courses</a>
-      <a href="#">Resources</a>
-      <a href="#">Contact</a>
+    <nav class="container">
+      <a href="#" class="logo">🧠 AI Learning Assistant</a>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </nav>
   </header>
 
-  <div class="content">
-    <main class="main-content">
-      <article>
-        <h2>Learn C Programming</h2>
-        <figure>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png" alt="C Logo" />
-          <figcaption>Fundamentals of C Language</figcaption>
-        </figure>
-        <p>
-          ➤ <a href="https://www.youtube.com/watch?v=KJgsSFOSQv0" target="_blank">Watch YouTube Tutorial</a><br />
-          ➤ <a href="https://example.com/c_notes.pdf" target="_blank">Download Notes (PDF)</a>
-        </p>
+  <main class="container">
+    <section class="hero">
+      <h1>Master Programming Languages</h1>
+      <p>Learn C, C++, Java, Python, and JavaScript with our comprehensive courses and resources</p>
+    </section>
+
+    <div class="course-grid">
+      <article class="course-card">
+        <div class="course-image">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png" alt="C Programming" />
+        </div>
+        <div class="course-content">
+          <h3>C Programming</h3>
+          <p>Master the fundamentals of C language and build strong programming foundations</p>
+          <div class="course-links">
+            <a href="https://www.youtube.com/watch?v=KJgsSFOSQv0" target="_blank" class="course-link">Watch YouTube Tutorial</a>
+            <a href="https://drive.google.com/file/d/1Uek0YApKaB_jbWJUTuHpvZ5UD599di8Q/view?usp=drivesdk" target="_blank" class="course-link">Download Notes (PDF)</a>
+          </div>
+        </div>
       </article>
 
-      <article>
-        <h2>Learn C++ Programming</h2>
-        <figure>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo" />
-          <figcaption>Object-Oriented Programming Concepts</figcaption>
-        </figure>
-        <p>
-          ➤ <a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="_blank">Watch YouTube Tutorial</a><br />
-          ➤ <a href="https://example.com/cpp_notes.pdf" target="_blank">Download Notes (PDF)</a>
-        </p>
+      <article class="course-card">
+        <div class="course-image">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Programming" />
+        </div>
+        <div class="course-content">
+          <h3>C++ Programming</h3>
+          <p>Dive into object-oriented programming concepts with C++</p>
+          <div class="course-links">
+            <a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="_blank" class="course-link">Watch YouTube Tutorial</a>
+            <a href="https://drive.google.com/file/d/1lIt9cQ9GO9hCWaYb0ysMQiZyQ0Lbd7bG/view?usp=drivesdk" target="_blank" class="course-link">Download Notes (PDF)</a>
+          </div>
+        </div>
       </article>
 
-      <article>
-        <h2>Learn Java Programming</h2>
-        <figure>
-          <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" alt="Java Logo" />
-          <figcaption>Core & Advanced Java</figcaption>
-        </figure>
-        <p>
-          ➤ <a href="https://www.youtube.com/watch?v=grEKMHGYyns" target="_blank">Watch YouTube Tutorial</a><br />
-          ➤ <a href="https://example.com/java_notes.pdf" target="_blank">Download Notes (PDF)</a>
-        </p>
+      <article class="course-card">
+        <div class="course-image">
+          <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" alt="Java Programming" />
+        </div>
+        <div class="course-content">
+          <h3>Java Programming</h3>
+          <p>Learn core and advanced Java concepts from basics to expert level</p>
+          <div class="course-links">
+            <a href="https://www.youtube.com/watch?v=grEKMHGYyns" target="_blank" class="course-link">Watch YouTube Tutorial</a>
+            <a href="https://drive.google.com/file/d/1oiiys4KomWiZhEJN31809TYWqFnDWWkQ/view?usp=drivesdk" target="_blank" class="course-link">Download Notes (PDF)</a>
+          </div>
+        </div>
       </article>
 
-      <article>
-        <h2>Learn Python Programming</h2>
-        <figure>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Logo" />
-          <figcaption>Python for AI and Data Science</figcaption>
-        </figure>
-        <p>
-          ➤ <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" target="_blank">Watch YouTube Tutorial</a><br />
-          ➤ <a href="https://example.com/python_notes.pdf" target="_blank">Download Notes (PDF)</a>
-        </p>
+      <article class="course-card">
+        <div class="course-image">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Programming" />
+        </div>
+        <div class="course-content">
+          <h3>Python Programming</h3>
+          <p>Python for AI, Data Science, and modern application development</p>
+          <div class="course-links">
+            <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" target="_blank" class="course-link">Watch YouTube Tutorial</a>
+            <a href="https://drive.google.com/file/d/1cUFdfg-MBe_DgSRhuYnmlJYYvAQtL5s_/view?usp=drivesdk" target="_blank" class="course-link">Download Notes (PDF)</a>
+          </div>
+        </div>
       </article>
 
-      <article>
-        <h2>Learn JavaScript Programming</h2>
-        <figure>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript Logo" />
-          <figcaption>Web Development and DOM Manipulation</figcaption>
-        </figure>
-        <p>
-          ➤ <a href="https://www.youtube.com/watch?v=W6NZfCO5SIk" target="_blank">Watch YouTube Tutorial</a><br />
-          ➤ <a href="https://example.com/js_notes.pdf" target="_blank">Download Notes (PDF)</a>
-        </p>
+      <article class="course-card">
+        <div class="course-image">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript Programming" />
+        </div>
+        <div class="course-content">
+          <h3>JavaScript Programming</h3>
+          <p>Master web development with JavaScript and DOM manipulation</p>
+          <div class="course-links">
+            <a href="https://www.youtube.com/watch?v=W6NZfCO5SIk" target="_blank" class="course-link">Watch YouTube Tutorial</a>
+            <a href="https://drive.google.com/file/d/11DE8y91sRrgNL0p8pqw4piE5FL6J1p8w/view?usp=drivesdk" target="_blank" class="course-link">Download Notes (PDF)</a>
+          </div>
+        </div>
       </article>
-    </main>
-
-    <aside class="related-news">
-      <h3>Other Resources</h3>
-      <ul>
-        <li><a href="#">Top 10 AI Learning Tools</a></li>
-        <li><a href="#">Free Programming E-books</a></li>
-        <li><a href="#">Interview Preparation Tips</a></li>
-      </ul>
-    </aside>
-  </div>
-
-  <footer>
-    <p>© 2025 AI Learning Assistant. All Rights Reserved.</p>
-  </footer>
+    </div>
+  </main>
 </body>
-
 </html>
